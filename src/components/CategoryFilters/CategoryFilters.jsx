@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./styles.css";
 
 const CategoryFilters = () => {
   const [categories, setCategories] = useState([]);
@@ -30,7 +31,7 @@ const CategoryFilters = () => {
     <div>
       <div>
         {categories.map((category) => {
-          return <button>{category}</button>;
+          return <button className="button">{category}</button>;
         })}
       </div>
     </div>
