@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./styles.css";
+import { Typography } from "@material-ui/core";
 
 const CategoryFilters = () => {
   const [categories, setCategories] = useState([]);
