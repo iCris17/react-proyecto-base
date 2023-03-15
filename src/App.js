@@ -3,7 +3,29 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Login from './components/Login/Login';
 import { Routes, Route } from 'react-router-dom';
 
-function App() {
+const App = () =>{
+
+  const [showAddUser, setShowAddUser] = useState(false);
+  const [showUpdateUser, setShowUpdateUser] = useState(false);
+  const [showDeleteUser, setShowDeleteUser] = useState(false);
+  const [showGetUser, setShowGetUser] = useState(false);
+
+
+  const handleAddUserClick = () => {
+    setShowAddUser(true);
+  };
+
+  const handleUpdateUserClick = () => {
+    setShowUpdateUser(true);
+  };
+
+  const handleDeleteUserClick = () => {
+    setShowDeleteUser(true);
+  };
+
+  const handleGetUserClick = () => {
+    setShowGetUser(true);
+  };
   return (
     <>
       <Routes>
@@ -13,6 +35,7 @@ function App() {
       </Routes>
     </>
   );
+
 }
 
 export default App;
