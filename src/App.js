@@ -1,11 +1,14 @@
-import "./App.css";
-import CategoryFilters from "./components/CategoryFilters/CategoryFilters";
+import './App.css';
+import Dashboard from './components/Dashboard/Dashboard';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <CategoryFilters></CategoryFilters>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
+    </>
   );
 }
 
