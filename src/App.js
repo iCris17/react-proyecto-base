@@ -29,7 +29,7 @@ const App = () =>{
   };
   return (
     <div>
-      <h1>User Management</h1>
+      <h1>Users Management</h1>
       <button onClick={handleAddUserClick}>Add User</button>
       <button onClick={handleUpdateUserClick}>Update User</button>
       <button onClick={handleDeleteUserClick}>Delete User</button>
