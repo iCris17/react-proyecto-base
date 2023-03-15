@@ -29,7 +29,7 @@ const CategoryFilters = () => {
   }
   return (
     <div>
-      <div>
+      <div className="button__categories__all">
         {categories.map((category) => {
           return <button className="button">{category}</button>;
         })}
