@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import AddUser from './components/Components/AddUser';
 import DeleteUser from './components/Components/DeleteUser';
 import UpdateUser from './components/Components/UpdateUser';
