@@ -33,7 +33,12 @@ const Products = () => {
     <div>
       <ul className="button__categories__all">
         {productList.map((product) => {
-          return <li key={product.id}>{product.title}</li>;
+          return (
+            <li key={product.id}>
+              <p>{product.title}</p>
+              <img src={product.image}></img>;
+            </li>
+          );
         })}
       </ul>
     </div>
