@@ -5,11 +5,11 @@ const Products = () => {
   const [productList, setProductList] = useState([]);
   const [error, setError] = useState();
   const { categoryName } = useParams();
-  console.log(categoryName);
+
   const getData = async () => {
     try {
       const response = await fetch(`https://fakestoreapi.com/products/category/${categoryName}`);
-      console.log(response);
+
       if (response.status !== 200) {
         throw new Error('Not ok');
       }
@@ -21,9 +21,11 @@ const Products = () => {
     }
   };
   useEffect(() => {
-    //SE EJECUTA 1 VEZ CUANDO SE MONTE EL COMPONENTE
+    //SE EJECUTA cada vez que categoryName cambia
+
     getData();
-  }, []);
+  }, [categoryName]);
+
   if (error) {
     return <p> error</p>;
   }
