@@ -2,6 +2,9 @@ import AddUser from './components/Components/AddUser';
 import DeleteUser from './components/Components/DeleteUser';
 import UpdateUser from './components/Components/UpdateUser';
 import GetUser from './components/Components/GetUser';
+import './App.css';
+import Dashboard from './components/Dashboard/Dashboard';
+import { Routes, Route } from 'react-router-dom';
 
 const App = () =>{
 
@@ -37,7 +40,11 @@ const App = () =>{
       {showUpdateUser && <UpdateUser />}
       {showDeleteUser && <DeleteUser />}
       {showGetUser && <GetUser />}
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
     </div>
+
   );
 
 }
