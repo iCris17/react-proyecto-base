@@ -1,13 +1,14 @@
-import AddUser from './components/Components/AddUser';
+/*import AddUser from './components/Components/AddUser';
 import DeleteUser from './components/Components/DeleteUser';
 import UpdateUser from './components/Components/UpdateUser';
 import GetUser from './components/Components/GetUser';
 import './App.css';
 import Dashboard from './components/Dashboard/Dashboard';
 import { Routes, Route } from 'react-router-dom';
+import {useState} from "React";*/
 
 const UserArea = () =>{
-
+/*
   const [showAddUser, setShowAddUser] = useState(false);
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [showDeleteUser, setShowDeleteUser] = useState(false);
@@ -46,7 +47,7 @@ const UserArea = () =>{
     </div>
 
   );
-
+*/
 }
 
 export default UserArea;

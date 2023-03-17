@@ -10,8 +10,6 @@ const LandingPage = () => {
             <Header></Header>
             <LandingPageBody></LandingPageBody>
             <Footer></Footer>
-            {/*<CategoryFilters></CategoryFilters>
-            <Products></Products>*/}
         </>
     );
 }
