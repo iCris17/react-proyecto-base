@@ -3,8 +3,6 @@ import DeleteUser from './components/Components/DeleteUser';
 import UpdateUser from './components/Components/UpdateUser';
 import GetUser from './components/Components/GetUser';
 import './App.css';
-import Dashboard from './components/Dashboard/Dashboard';
-import { Routes, Route } from 'react-router-dom';
 
 const UserArea = () => {
   const [showAddUser, setShowAddUser] = useState(false);
