@@ -6,13 +6,11 @@ import './App.css';
 import Dashboard from './components/Dashboard/Dashboard';
 import { Routes, Route } from 'react-router-dom';
 
-const UserArea = () =>{
-
+const UserArea = () => {
   const [showAddUser, setShowAddUser] = useState(false);
   const [showUpdateUser, setShowUpdateUser] = useState(false);
   const [showDeleteUser, setShowDeleteUser] = useState(false);
   const [showGetUser, setShowGetUser] = useState(false);
-
 
   const handleAddUserClick = () => {
     setShowAddUser(true);
@@ -40,13 +38,8 @@ const UserArea = () =>{
       {showUpdateUser && <UpdateUser />}
       {showDeleteUser && <DeleteUser />}
       {showGetUser && <GetUser />}
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-      </Routes>
     </div>
-
   );
-
-}
+};
 
 export default UserArea;
