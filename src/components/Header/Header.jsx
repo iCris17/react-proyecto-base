@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   },
   ancore: {
     textDecoration: "none",
-    fontWeight: "bold",
     color: "white",
     padding: "7px 16px",
     "&:hover": {
@@ -50,7 +51,23 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 3
   },
   grow: {
-    flexGrow: 0.5,
+    flexGrow: 1,
+  },
+  buttonsGrow: {
+    flexGrow: 0.75,
+    display: "flex",
+    justifyContent: "flex-end",
+    [theme.breakpoints.down("sm")]: {
+      display:"none"
+    }
+  },
+  button: {
+    marginRight: "10px",
+    background: "#f7aa35",
+    color: "black",
+    "&:hover": {
+      background: "#f7aa35"
+    }
   },
   title: {
     display: 'none',
@@ -72,9 +89,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 const Header = () => {
   const classes = useStyles();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const navigate = useNavigate();
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -103,6 +123,8 @@ const Header = () => {
       <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
         <a className={classes.ancore} href="#contact-us">Contact Us</a>
       </MenuItem>
+      <MenuItem onClick={() => {navigate("/dashboard")}}>Go to Products</MenuItem>
+      <MenuItem onClick={() => {navigate("/users")}}> Go to Users</MenuItem>
     </Menu>
   );
 
@@ -126,7 +148,10 @@ const Header = () => {
                 </Typography>
             </div>
           </div>
-          <div className={classes.grow} />
+          <div className={classes.buttonsGrow}>
+            <Button variant="contained" className={classes.button} onClick={() => {navigate("/dashboard")}}>Products</Button>
+            <Button variant="contained" className={classes.button} onClick={() => {navigate("/users")}}>Users</Button>
+          </div>
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
