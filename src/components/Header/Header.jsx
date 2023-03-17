@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +11,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme) => ({
   root: {
     background: "#802c6e",
+    zIndex: 1,
+    position: "fixed"
   },
   logo: {
     color: "white",
@@ -24,10 +26,12 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     fontWeight: "bold",
     color: "white",
+    padding: "7px 16px",
     "&:hover": {
-      color: "#41f8fe"
+      color: "#41f8fe",
     },
     transition: "color 0.5s",
+    width: "100%",
     [theme.breakpoints.down("sm")]: {
       color: "black",
       transition: "none",
@@ -35,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
         color:"black"
       }
     }
+  },
+  ancoreContainer: {
+    padding: 0
   },
   navbar: {
     display: "grid",
@@ -67,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -90,11 +97,11 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <a className={classes.ancore} href="#Hello">Home</a>
+      <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
+        <a className={classes.ancore} href="#home">Home</a>
       </MenuItem>
-      <MenuItem>
-        <a className={classes.ancore} href="#Hello">Contact Us</a>
+      <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
+        <a className={classes.ancore} href="#contact-us">Contact Us</a>
       </MenuItem>
     </Menu>
   );
@@ -104,18 +111,18 @@ const Header = () => {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <a className={`${classes.logo}`} href='#Hello'>Fake Store API</a>
+            <a className={`${classes.logo}`} href='#home'>Sellers Store</a>
           </Typography>
           <div className={classes.grow} />
           <div className={`${classes.navbar} ${classes.sectionDesktop}`}>
             <div>
                 <Typography className={classes.title} variant="h6" noWrap>
-                    <a className={classes.ancore} href='#Hello'>Home</a>
+                    <a className={classes.ancore} href='#home'>Home</a>
                 </Typography>
             </div>
             <div>
                 <Typography className={classes.title} variant="h6" noWrap>
-                    <a className={classes.ancore} href='#Hello'>Contact Us</a>
+                    <a className={classes.ancore} href='#contact-us'>Contact Us</a>
                 </Typography>
             </div>
           </div>
