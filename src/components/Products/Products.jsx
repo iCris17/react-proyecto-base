@@ -5,22 +5,36 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import { truncate } from '../../utils/string';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    width: '100%',
+    padding: '25px',
+  },
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
-    maxWidth: 500,
   },
-  image: {
-    // width: 128,
-    // height: 128,
+  images: {
+    width: '100%',
   },
   img: {
-    margin: 'auto',
-    // display: 'block',
-    maxWidth: '40%',
-    height: '40%',
+    maxWidth: '100%',
+    height: '200px',
+  },
+  title: {
+    paddingTop: '20px',
+    minHeight: '85px',
+    fontWeight: 'bold',
+  },
+  description: {
+    minHeight: '150px',
+  },
+  price: {
+    paddingTop: '20px',
+    color: 'Green',
+    fontWeight: 'bold',
   },
 }));
 
@@ -53,45 +67,50 @@ const Products = () => {
   if (error) {
     return <p> error</p>;
   }
+
   return (
-    <div>
+    <Grid container spacing={2} className={classes.container}>
       {productList.map((product) => {
         return (
-          <Grid container spacing={9} key={product}>
-            <Grid item>
-              <Paper className={classes.paper} key={product}>
-                <ButtonBase className={classes.images} key={product}>
-                  <img src={product.image} className={classes.img}></img>
-                </ButtonBase>
-                <Grid item xs={6} sm container>
-                  <Grid item xs container direction="column" spacing={6}>
-                    <Grid item xs>
-                      <Typography gutterBottom variant="subtitle1">
-                        {product.title}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        ID:{product.id}
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        {product.description}
-                      </Typography>
+          <Grid item xs={3} key={product}>
+            <Grid container spacing={0}>
+              <Grid item xs={12}>
+                <Paper className={classes.paper} key={product}>
+                  <ButtonBase className={classes.images} key={product}>
+                    <img src={product.image} className={classes.img}></img>
+                  </ButtonBase>
+                  <Grid item xs={6} sm container>
+                    <Grid item xs container direction="column" spacing={6}>
+                      <Grid item xs>
+                        <Typography gutterBottom variant="subtitle1" className={classes.title}>
+                          {truncate(product.title, 50)}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          ID:{product.id}
+                        </Typography>
+                        <Typography variant="body2" gutterBottom className={classes.description}>
+                          {truncate(product.description, 150)}
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="body2" style={{ cursor: 'pointer' }}>
+                          Remove
+                        </Typography>
+                      </Grid>
                     </Grid>
                     <Grid item>
-                      <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                        Remove
+                      <Typography variant="subtitle1" className={classes.price}>
+                        ${product.price}
                       </Typography>
                     </Grid>
                   </Grid>
-                  <Grid item>
-                    <Typography variant="subtitle1">${product.price}</Typography>
-                  </Grid>
-                </Grid>
-              </Paper>
+                </Paper>
+              </Grid>
             </Grid>
           </Grid>
         );
       })}
-    </div>
+    </Grid>
   );
 };
 export default Products;

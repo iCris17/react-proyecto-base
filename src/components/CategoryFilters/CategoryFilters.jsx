@@ -15,7 +15,6 @@ const useStyles = makeStyles(() => ({
     padding: '15px 30px',
     borderWidth: '0.5px',
     color: 'white',
-
     textTransform: 'capitalize',
   },
 }));
