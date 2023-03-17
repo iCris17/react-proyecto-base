@@ -1,8 +1,27 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => ({
+  buttonCategories: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+    backgroundColor: '#802c6e',
+  },
+  button: {
+    backgroundColor: '#802c6e',
+    fontSize: '15px',
+    padding: '15px 30px',
+    borderWidth: '0.5px',
+    color: 'white',
+
+    textTransform: 'capitalize',
+  },
+}));
 
 const CategoryFilters = () => {
+  const classes = useStyles();
   const [categories, setCategories] = useState([]);
   let navigate = useNavigate();
   const [error, setError] = useState();
@@ -29,11 +48,11 @@ const CategoryFilters = () => {
   }
   return (
     <div>
-      <div className="button__categories__all">
+      <div className={classes.buttonCategories}>
         {categories.map((category) => {
           return (
             <button
-              className="button"
+              className={classes.button}
               key={category}
               onClick={() => {
                 navigate(`/category/${category}`);
