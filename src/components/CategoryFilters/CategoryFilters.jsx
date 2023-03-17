@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles.css';
 
 const CategoryFilters = () => {
   const [categories, setCategories] = useState([]);
+  let navigate = useNavigate();
   const [error, setError] = useState();
   const getData = async () => {
     try {
@@ -30,7 +32,13 @@ const CategoryFilters = () => {
       <div className="button__categories__all">
         {categories.map((category) => {
           return (
-            <button className="button" key={category}>
+            <button
+              className="button"
+              key={category}
+              onClick={() => {
+                navigate(`/category/${category}`);
+              }}
+            >
               {category}
             </button>
           );
