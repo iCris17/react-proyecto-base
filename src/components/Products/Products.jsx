@@ -36,6 +36,14 @@ const useStyles = makeStyles((theme) => ({
     color: 'Green',
     fontWeight: 'bold',
   },
+  button: {
+    backgroundColor: '#802c6e',
+    fontSize: '15px',
+    padding: '10px',
+    borderWidth: '0.5px',
+    color: 'white',
+    textTransform: 'capitalize',
+  },
 }));
 
 const Products = () => {
@@ -93,9 +101,17 @@ const Products = () => {
                         </Typography>
                       </Grid>
                       <Grid item>
-                        <Typography variant="body2" style={{ cursor: 'pointer' }}>
+                        <button
+                          className={classes.button}
+                          onClick={() => {
+                            const remove = productList.filter(
+                              (producto) => producto.id !== product.id,
+                            );
+                            setProductList(remove);
+                          }}
+                        >
                           Remove
-                        </Typography>
+                        </button>
                       </Grid>
                     </Grid>
                     <Grid item>
