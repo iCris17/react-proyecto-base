@@ -27,14 +27,18 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '20px',
     minHeight: '85px',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   description: {
     minHeight: '150px',
+    textAlign: 'center',
+    textTransform: 'capitalize',
   },
   price: {
     paddingTop: '20px',
     color: 'Green',
     fontWeight: 'bold',
+    fontSize: '22px',
   },
   button: {
     backgroundColor: '#802c6e',
@@ -92,6 +96,9 @@ const Products = () => {
                       <Grid item xs>
                         <Typography gutterBottom variant="subtitle1" className={classes.title}>
                           {truncate(product.title, 50)}
+                          <Typography variant="subtitle1" className={classes.price}>
+                            ${product.price}
+                          </Typography>
                         </Typography>
                         <Typography variant="body2" color="textSecondary">
                           ID:{product.id}
@@ -113,11 +120,6 @@ const Products = () => {
                           Remove
                         </button>
                       </Grid>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1" className={classes.price}>
-                        ${product.price}
-                      </Typography>
                     </Grid>
                   </Grid>
                 </Paper>
