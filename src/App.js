@@ -1,16 +1,19 @@
-import LandingPage from './components/LandingPage/LandingPage';
-import { Routes, Route } from 'react-router-dom';
-
-import UserArea from './components/UserArea/UserArea';
+import LandingPage from "./components/LandingPage/LandingPage";
+/*import Login from "./components/Login/Login";
+import CategoryFilters from "./components/CategoryFilters/CategoryFilters"
+import { Route, Routes } from "react-router-dom";
+import UserArea from "./components/UserArea/UserArea"*/
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/category/:categoryName" element={<LandingPage />} />
-        <Route path="/users/" element={<UserArea />}></Route>
-      </Routes>
+      <LandingPage></LandingPage>
+      {/*<Routes>
+        <Route path="/" element={<LandingPage />}/>
+        <Route path="/category" element={<CategoryFilters />}/>
+        <Route path="/users" element={<UserArea />}/>
+        <Route path="/login" element={<Login />}/>
+      </Routes>*/}
     </>
   );
 }
