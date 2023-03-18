@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     padding: '25px',
   },
+
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
@@ -84,7 +85,7 @@ const Products = () => {
     <Grid container spacing={2} className={classes.container}>
       {productList.map((product) => {
         return (
-          <Grid item xs={3} key={product}>
+          <Grid item xs={12} md={3} key={product}>
             <Grid container spacing={0}>
               <Grid item xs={12}>
                 <Paper className={classes.paper} key={product}>
@@ -92,13 +93,16 @@ const Products = () => {
                     <img src={product.image} className={classes.img}></img>
                   </ButtonBase>
                   <Grid item xs={6} sm container>
-                    <Grid item xs container direction="column" spacing={6}>
+                    <Grid item xs container direction="column" spacing={12}>
                       <Grid item xs>
                         <Typography gutterBottom variant="subtitle1" className={classes.title}>
                           {truncate(product.title, 50)}
                           <Typography variant="subtitle1" className={classes.price}>
                             ${product.price}
                           </Typography>
+                        </Typography>
+                        <Typography variant="subtitle1" className={classes.price}>
+                          ${product.price}
                         </Typography>
                         <Typography variant="body2" color="textSecondary">
                           ID:{product.id}

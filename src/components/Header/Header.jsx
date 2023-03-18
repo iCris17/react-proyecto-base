@@ -12,62 +12,62 @@ import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: "#802c6e",
+    background: '#802c6e',
     zIndex: 1,
-    position: "fixed"
+    position: 'fixed',
   },
   logo: {
-    color: "white",
-    textDecoration: "none",
-    transition: "color 0.5s",
-    "&:hover": {
-      color: "#41f8fe"
-    }
+    color: 'white',
+    textDecoration: 'none',
+    transition: 'color 0.5s',
+    '&:hover': {
+      color: '#41f8fe',
+    },
   },
   ancore: {
-    textDecoration: "none",
-    color: "white",
-    padding: "7px 16px",
-    "&:hover": {
-      color: "#41f8fe",
+    textDecoration: 'none',
+    color: 'white',
+    padding: '7px 16px',
+    '&:hover': {
+      color: '#41f8fe',
     },
-    transition: "color 0.5s",
-    width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      color: "black",
-      transition: "none",
-      "&:hover": {
-        color:"black"
-      }
-    }
+    transition: 'color 0.5s',
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      color: 'black',
+      transition: 'none',
+      '&:hover': {
+        color: 'black',
+      },
+    },
   },
   ancoreContainer: {
-    padding: 0
+    padding: 0,
   },
   navbar: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    justifyItems: "center",
-    flexGrow: 3
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    justifyItems: 'center',
+    flexGrow: 3,
   },
   grow: {
     flexGrow: 1,
   },
   buttonsGrow: {
     flexGrow: 0.75,
-    display: "flex",
-    justifyContent: "flex-end",
-    [theme.breakpoints.down("sm")]: {
-      display:"none"
-    }
+    display: 'flex',
+    justifyContent: 'flex-end',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   button: {
-    marginRight: "10px",
-    background: "#f7aa35",
-    color: "black",
-    "&:hover": {
-      background: "#f7aa35"
-    }
+    marginRight: '10px',
+    background: '#f7aa35',
+    color: 'black',
+    '&:hover': {
+      background: '#f7aa35',
+    },
   },
   title: {
     display: 'none',
@@ -88,8 +88,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-
 
 const Header = () => {
   const classes = useStyles();
@@ -118,13 +116,30 @@ const Header = () => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
-        <a className={classes.ancore} href="#home">Home</a>
+        <a className={classes.ancore} href="#home">
+          Home
+        </a>
       </MenuItem>
       <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
-        <a className={classes.ancore} href="#contact-us">Contact Us</a>
+        <a className={classes.ancore} href="#contact-us">
+          Contact Us
+        </a>
       </MenuItem>
-      <MenuItem onClick={() => {navigate("/dashboard")}}>Go to Products</MenuItem>
-      <MenuItem onClick={() => {navigate("/users")}}> Go to Users</MenuItem>
+      <MenuItem
+        onClick={() => {
+          navigate('/dashboard');
+        }}
+      >
+        Go to Products
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          navigate('/users');
+        }}
+      >
+        {' '}
+        Go to Users
+      </MenuItem>
     </Menu>
   );
 
@@ -133,24 +148,46 @@ const Header = () => {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <a className={`${classes.logo}`} href='#home'>Sellers Store</a>
+            <a className={`${classes.logo}`} href="#home">
+              Sellers Store
+            </a>
           </Typography>
           <div className={classes.grow} />
           <div className={`${classes.navbar} ${classes.sectionDesktop}`}>
             <div>
-                <Typography className={classes.title} variant="h6" noWrap>
-                    <a className={classes.ancore} href='#home'>Home</a>
-                </Typography>
+              <Typography className={classes.title} variant="h6" noWrap>
+                <a className={classes.ancore} href="#home">
+                  Home
+                </a>
+              </Typography>
             </div>
             <div>
-                <Typography className={classes.title} variant="h6" noWrap>
-                    <a className={classes.ancore} href='#contact-us'>Contact Us</a>
-                </Typography>
+              <Typography className={classes.title} variant="h6" noWrap>
+                <a className={classes.ancore} href="#contact-us">
+                  Contact Us
+                </a>
+              </Typography>
             </div>
           </div>
           <div className={classes.buttonsGrow}>
-            <Button variant="contained" className={classes.button} onClick={() => {navigate("/dashboard")}}>Products</Button>
-            <Button variant="contained" className={classes.button} onClick={() => {navigate("/users")}}>Users</Button>
+            <Button
+              variant="contained"
+              className={classes.button}
+              onClick={() => {
+                navigate('/dashboard');
+              }}
+            >
+              Products
+            </Button>
+            <Button
+              variant="contained"
+              className={classes.button}
+              onClick={() => {
+                navigate('/users');
+              }}
+            >
+              Users
+            </Button>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -168,6 +205,6 @@ const Header = () => {
       {renderMobileMenu}
     </div>
   );
-}
+};
 
 export default Header;
