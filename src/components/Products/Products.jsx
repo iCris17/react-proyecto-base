@@ -80,7 +80,7 @@ const Products = () => {
     <Grid container spacing={2} className={classes.container}>
       {productList.map((product) => {
         return (
-          <Grid item xs={3} key={product}>
+          <Grid item xs={12} md={3} key={product}>
             <Grid container spacing={0}>
               <Grid item xs={12}>
                 <Paper className={classes.paper} key={product}>
