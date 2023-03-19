@@ -95,6 +95,7 @@ const Header = () => {
   const classes = useStyles();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const navigate = useNavigate();
+  let isAuthenticated = localStorage.getItem("auth");
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -116,15 +117,26 @@ const Header = () => {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
-    >
-      <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
-        <a className={classes.ancore} href="#home">Home</a>
-      </MenuItem>
-      <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
-        <a className={classes.ancore} href="#contact-us">Contact Us</a>
-      </MenuItem>
-      <MenuItem onClick={() => {navigate("/dashboard")}}>Go to Products</MenuItem>
-      <MenuItem onClick={() => {navigate("/users")}}> Go to Users</MenuItem>
+    >{(window.location.pathname === "/" || window.location.pathname === "") && 
+      <div>
+        <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
+          <a className={classes.ancore} href="#home">Home</a>
+        </MenuItem>
+        <MenuItem onClick={handleMobileMenuClose} className={classes.ancoreContainer}>
+          <a className={classes.ancore} href="#contact-us">Contact Us</a>
+        </MenuItem>
+      </div>
+    }
+      
+      {isAuthenticated === "yes" && <div>
+        <MenuItem onClick={() => {navigate("/category")}}>Go to Products</MenuItem>
+        <MenuItem onClick={() => {navigate("/users")}}> Go to Users</MenuItem>
+        <MenuItem onClick={() => {localStorage.removeItem("auth");navigate("/");alert("Logged out successfully!")}}>Log Out</MenuItem>
+      </div>}
+      {isAuthenticated !== "yes" && <div>
+        <MenuItem onClick={() => {navigate("login")}}>Log In</MenuItem>
+      </div>}
+      
     </Menu>
   );
 
@@ -133,24 +145,37 @@ const Header = () => {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <a className={`${classes.logo}`} href='#home'>Sellers Store</a>
+            
+            <a className={`${classes.logo}`} href='#home' onClick={() => {(window.location.pathname === "/category"
+            || window.location.pathname === ("/users")) && navigate("/")}}>Sellers Store</a>
           </Typography>
           <div className={classes.grow} />
-          <div className={`${classes.navbar} ${classes.sectionDesktop}`}>
-            <div>
-                <Typography className={classes.title} variant="h6" noWrap>
-                    <a className={classes.ancore} href='#home'>Home</a>
-                </Typography>
+          {(window.location.pathname === "/" || window.location.pathname === "") && 
+            <div className={`${classes.navbar} ${classes.sectionDesktop}`}>
+              <div>
+                  <Typography className={classes.title} variant="h6" noWrap>
+                      <a className={classes.ancore} href='#home'>Home</a>
+                  </Typography>
+              </div>
+              <div>
+                  <Typography className={classes.title} variant="h6" noWrap>
+                      <a className={classes.ancore} href='#contact-us'>Contact Us</a>
+                  </Typography>
+              </div>
             </div>
-            <div>
-                <Typography className={classes.title} variant="h6" noWrap>
-                    <a className={classes.ancore} href='#contact-us'>Contact Us</a>
-                </Typography>
-            </div>
-          </div>
+          }
           <div className={classes.buttonsGrow}>
-            <Button variant="contained" className={classes.button} onClick={() => {navigate("/dashboard")}}>Products</Button>
-            <Button variant="contained" className={classes.button} onClick={() => {navigate("/users")}}>Users</Button>
+            {isAuthenticated === "yes" && <>
+              {window.location.pathname !== ("/category") && <Button variant="contained" className={classes.button} 
+              onClick={() => {navigate("/category")}}>Products</Button>}
+              {window.location.pathname !== ("/users") && <Button variant="contained" className={classes.button} 
+              onClick={() => {navigate("/users")}}>Users</Button>}
+              <Button variant="contained" className={classes.button} 
+              onClick={() => {localStorage.removeItem("auth");navigate("/");alert("Logged out successfully!")}}>Log Out</Button>
+            </>}
+            {isAuthenticated !== "yes" && <>
+            <Button variant="contained" className={classes.button} onClick={() => {navigate("/login")}}>Log In</Button>
+            </>}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton

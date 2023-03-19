@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { makeStyles, ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import "./Login.css"
 import { TextField, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { purple } from '@material-ui/core/colors';
 import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined';
-
+import { useNavigate } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 
 const theme = createTheme({
   palette: {
@@ -16,6 +16,14 @@ const theme = createTheme({
 
 const useStyles = makeStyles( (theme) => ({
   root: {
+    height: "100vh",
+    display: "flex",
+    backgroundColor: "#f5f5f5",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center"
+  },
+  container: {
     maxWidth: 500,
     display: "flex",
     justifyContent: "center",
@@ -80,71 +88,76 @@ const useStyles = makeStyles( (theme) => ({
   }
 }));
 
+
+
 const Login = () => {
   const classes = useStyles();
   const [error, setError] = useState(false);
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  console.log(error, setError);
-  const mockUser = {
-    user: "user",
-    password: "password"
+  const navigate = useNavigate();
+
+  const handleLogin = async (user, password) => {
+    try {
+      const response = await fetch('https://fakestoreapi.com/auth/login',{
+        headers: {mode: "no-cors", "Content-type":"application/json"},
+        method:'POST',
+        body:JSON.stringify({
+            username: user,
+            password: password
+        })
+      });
+      const token = await response.json();
+      if (response.status !== 200) {
+        throw new Error('There was an error during the request');
+      }
+      validateAuthentication(token);
+    } catch (error) {
+      setError(true);
+    }
+    
   }
-  console.log(mockUser);
 
   const handleSubmit = (event) => {
     event.preventDefault()
     setUser("");
     setPassword("");
-    validateAuthentication(user, password);
+    handleLogin(user, password);
   }
 
-  const validateAuthentication = (authUser, authPassword) => {
-    if (authUser !== user && authPassword !== password ){
+  const validateAuthentication = (token) => {
+    if (!token){
       setError(true);
       return
     }
+    setError(false);
     localStorage.setItem("auth", "yes");
+    navigate("/");
   }
-/*
-  const handleLogin = async () => {
-    try {
-      const response = await fetch('https://fakestoreapi.com/auth/login',{
-        method:'POST',
-        body:JSON.stringify({
-            username: "jimmie_k",
-            password: "klein*#%*"
-        })
-      })
-      const token = await response.json();
-      console.log(token);
-      if (response.status !== 200) {
-        throw new Error('There was an error during the request');
-      }
-    } catch (error) {
-      alert(error);
-    }
-    
-  }*/
+
+  
   return (
-    <div className={classes.root}>
-      <Typography variant='h3' className={classes.title}><span className={classes.titleStyles}>Login</span> with your credentials</Typography>
-      <Card className={classes.card}>
-        <ThemeProvider theme={theme}>
-          <img src="/store.svg" alt="Login image" className={classes.image} />
-          <form onSubmit={handleSubmit}>
-            {error && <div className={classes.errorContainer}><ReportProblemOutlinedIcon className={classes.errorIcon}/><Typography variant='h6' className={classes.error} >
-              Incorrect credentials</Typography></div>}
-            <TextField required type="text" id="user" label="User" variant="outlined" className={classes.textField}
-            value={user} onChange={(e) => setUser(e.target.value)}/>
-            <TextField required type="password" id="password" label="Password" variant="outlined" className={classes.textField}
-            value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <Button type="submit" variant="contained" color="primary" className={classes.button} >Login</Button>
-          </form>
-        </ThemeProvider>
+    <Grid container className={classes.root}>
+      <div className={classes.container}>
+        <Typography variant='h3' className={classes.title}><span className={classes.titleStyles}>Login</span> with your credentials</Typography>
+        <Card className={classes.card}>
+          <ThemeProvider theme={theme}>
+            <img src="/store.svg" alt="Login image" className={classes.image} />
+            <form onSubmit={handleSubmit}>
+              {error && <div className={classes.errorContainer}><ReportProblemOutlinedIcon className={classes.errorIcon}/><Typography variant='h6' className={classes.error} >
+                Incorrect credentials</Typography></div>}
+              <TextField required type="text" id="user" label="User" variant="outlined" className={classes.textField}
+              value={user} onChange={(e) => setUser(e.target.value)}/>
+              <TextField required type="password" id="password" label="Password" variant="outlined" className={classes.textField}
+              value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <Button type="submit" variant="contained" color="primary" className={classes.button}>Login</Button>
+            </form>
+          </ThemeProvider>
+          
+        </Card>
+      </div>
+    </Grid>
         
-      </Card>
-    </div>    
   );
 }
 

@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
+  root: {
+    paddingTop: "63px"
+  },
   buttonCategories: {
     display: 'flex',
     justifyContent: 'center',
@@ -46,7 +49,7 @@ const CategoryFilters = () => {
     return <p> error</p>;
   }
   return (
-    <div>
+    <div className={classes.root}>
       <div className={classes.buttonCategories}>
         {categories.map((category) => {
           return (
