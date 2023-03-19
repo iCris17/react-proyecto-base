@@ -142,16 +142,6 @@ const Header = () => {
               Go to Products
             </MenuItem>
           )}
-          {window.location.pathname !== '/users' && (
-            <MenuItem
-              onClick={() => {
-                navigate('/users');
-              }}
-            >
-              {' '}
-              Go to Users
-            </MenuItem>
-          )}
           <MenuItem
             onClick={() => {
               localStorage.removeItem('auth');
@@ -225,17 +215,6 @@ const Header = () => {
                     }}
                   >
                     Products
-                  </Button>
-                )}
-                {window.location.pathname !== '/users' && (
-                  <Button
-                    variant="contained"
-                    className={classes.button}
-                    onClick={() => {
-                      navigate('/users');
-                    }}
-                  >
-                    Users
                   </Button>
                 )}
                 <Button
