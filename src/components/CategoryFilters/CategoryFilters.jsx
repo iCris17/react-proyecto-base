@@ -11,11 +11,12 @@ const useStyles = makeStyles(() => ({
   },
   button: {
     backgroundColor: '#802c6e',
-    fontSize: '15px',
+    fontSize: '18px',
     padding: '15px 30px',
-    borderWidth: '0.5px',
     color: 'white',
     textTransform: 'capitalize',
+    fontWeight: 'bold',
+    border: 'none',
   },
 }));
 
