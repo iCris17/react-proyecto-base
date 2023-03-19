@@ -4,7 +4,6 @@ import AddUser from '../AddUser/AddUser';
 import UpdateUser from '../UpdateUser/UpdateUser';
 import DeleteUser from '../DeleteUser/DeleteUser';
 import GetUser from '../GetUser/GetUser';
-import { Update } from '@material-ui/icons';
 
 const UseStyles = makeStyles((theme) => ({
     root: {
@@ -69,7 +68,7 @@ const UserBody = () => {
         <AddUser/>
         <DeleteUser/>
         <GetUser/>
-        <Update/>
+        <UpdateUser/>
     </Grid>
     );
 }
