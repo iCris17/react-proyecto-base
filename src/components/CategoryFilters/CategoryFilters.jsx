@@ -47,7 +47,7 @@ const CategoryFilters = () => {
     return <p> error</p>;
   }
   return (
-    <div>
+    <div className={classes.root}>
       <div className={classes.buttonCategories}>
         {categories.map((category) => {
           return (

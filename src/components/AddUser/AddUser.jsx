@@ -1,4 +1,4 @@
-import { useState } from "react";
+/*import { useState } from "react";
 
 const AddUser = () => {
   const [name, setName] = useState('');
@@ -48,7 +48,7 @@ const AddUser = () => {
       </div>
     );
   }
-}
+}*/
 
 export default AddUser;
 
