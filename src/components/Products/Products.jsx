@@ -51,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: '0.5px',
     color: 'white',
     textTransform: 'capitalize',
-    // display: 'inline-block',
   },
 }));
 
@@ -61,9 +60,11 @@ const Products = () => {
   const [error, setError] = useState();
   const { categoryName } = useParams();
   const [openForm, setOpenForm] = useState(false);
+  const [productID, setProductID] = useState();
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (event, productID) => {
     setOpenForm(true);
+    setProductID(productID);
   };
   const handleClose = () => {
     setOpenForm(false);
@@ -95,19 +96,25 @@ const Products = () => {
 
   return (
     <>
-      <UpdateProductForm isOpen={openForm} handleClose={handleClose}></UpdateProductForm>
+      <UpdateProductForm
+        isOpen={openForm}
+        handleClose={handleClose}
+        setProductList={setProductList}
+        productList={productList}
+        productID={productID}
+      ></UpdateProductForm>
       <Grid container spacing={2} className={classes.container}>
         {productList.map((product) => {
           return (
-            <Grid item xs={12} md={3} key={product}>
+            <Grid item xs={12} md={3} key={product.id}>
               <Grid container spacing={0}>
                 <Grid item xs={12}>
-                  <Paper className={classes.paper} key={product}>
-                    <ButtonBase className={classes.images} key={product}>
+                  <Paper className={classes.paper}>
+                    <ButtonBase className={classes.images}>
                       <img src={product.image} className={classes.img}></img>
                     </ButtonBase>
                     <Grid item xs={12} sm container>
-                      <Grid item xs container direction="column" spacing={12}>
+                      <Grid item xs container direction="column" spacing={0}>
                         <Grid item>
                           <Typography gutterBottom variant="subtitle1" className={classes.title}>
                             {truncate(product.title, 50)}
@@ -134,7 +141,10 @@ const Products = () => {
                           >
                             Remove
                           </button>
-                          <button className={classes.button} onClick={handleClickOpen}>
+                          <button
+                            className={classes.button}
+                            onClick={(event) => handleClickOpen(event, product.id)}
+                          >
                             Update
                           </button>
                         </Grid>

@@ -51,15 +51,16 @@ const CategoryFilters = () => {
       <div className={classes.buttonCategories}>
         {categories.map((category) => {
           return (
-            <button
-              className={classes.button}
-              key={category}
-              onClick={() => {
-                navigate(`/category/${category}`);
-              }}
-            >
-              {category}
-            </button>
+            <div key={category}>
+              <button
+                className={classes.button}
+                onClick={() => {
+                  navigate(`/category/${category}`);
+                }}
+              >
+                {category}
+              </button>
+            </div>
           );
         })}
       </div>
