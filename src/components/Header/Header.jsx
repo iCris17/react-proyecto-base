@@ -126,9 +126,10 @@ const Header = () => {
       </div>
     }
       
-      {isAuthenticated === "yes" && <div>
-        <MenuItem onClick={() => {navigate("/category")}}>Go to Products</MenuItem>
-        <MenuItem onClick={() => {navigate("/users")}}> Go to Users</MenuItem>
+      {isAuthenticated === "yes"  && <div>
+        {window.location.pathname !== ("/category/:categoryName") && 
+        <MenuItem onClick={() => {navigate("/category:categoryName")}}>Go to Products</MenuItem>}
+        {window.location.pathname !== ("/users") && <MenuItem onClick={() => {navigate("/users")}}> Go to Users</MenuItem>}
         <MenuItem onClick={() => {localStorage.removeItem("auth");navigate("/");alert("Logged out successfully!")}}>Log Out</MenuItem>
       </div>}
       {isAuthenticated !== "yes" && <div>
@@ -164,8 +165,8 @@ const Header = () => {
           }
           <div className={classes.buttonsGrow}>
             {isAuthenticated === "yes" && <>
-              {window.location.pathname !== ("/category") && <Button variant="contained" className={classes.button} 
-              onClick={() => {navigate("/category")}}>Products</Button>}
+              {window.location.pathname !== ("/category/:categoryName") && <Button variant="contained" className={classes.button} 
+              onClick={() => {navigate("/category/:categoryName")}}>Products</Button>}
               {window.location.pathname !== ("/users") && <Button variant="contained" className={classes.button} 
               onClick={() => {navigate("/users")}}>Users</Button>}
               <Button variant="contained" className={classes.button} 
