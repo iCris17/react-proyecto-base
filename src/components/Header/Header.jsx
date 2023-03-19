@@ -12,62 +12,62 @@ import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: "#802c6e",
+    background: '#802c6e',
     zIndex: 1,
-    position: "fixed"
+    position: 'fixed',
   },
   logo: {
-    color: "white",
-    textDecoration: "none",
-    transition: "color 0.5s",
-    "&:hover": {
-      color: "#41f8fe"
-    }
+    color: 'white',
+    textDecoration: 'none',
+    transition: 'color 0.5s',
+    '&:hover': {
+      color: '#41f8fe',
+    },
   },
   ancore: {
-    textDecoration: "none",
-    color: "white",
-    padding: "7px 16px",
-    "&:hover": {
-      color: "#41f8fe",
+    textDecoration: 'none',
+    color: 'white',
+    padding: '7px 16px',
+    '&:hover': {
+      color: '#41f8fe',
     },
-    transition: "color 0.5s",
-    width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      color: "black",
-      transition: "none",
-      "&:hover": {
-        color:"black"
-      }
-    }
+    transition: 'color 0.5s',
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      color: 'black',
+      transition: 'none',
+      '&:hover': {
+        color: 'black',
+      },
+    },
   },
   ancoreContainer: {
-    padding: 0
+    padding: 0,
   },
   navbar: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    justifyItems: "center",
-    flexGrow: 3
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    justifyItems: 'center',
+    flexGrow: 3,
   },
   grow: {
     flexGrow: 1,
   },
   buttonsGrow: {
     flexGrow: 0.75,
-    display: "flex",
-    justifyContent: "flex-end",
-    [theme.breakpoints.down("sm")]: {
-      display:"none"
-    }
+    display: 'flex',
+    justifyContent: 'flex-end',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   button: {
-    marginRight: "10px",
-    background: "#f7aa35",
-    color: "black",
-    "&:hover": {
-      background: "#f7aa35"
-    }
+    marginRight: '10px',
+    background: '#f7aa35',
+    color: 'black',
+    '&:hover': {
+      background: '#f7aa35',
+    },
   },
   title: {
     display: 'none',
@@ -88,8 +88,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-
 
 const Header = () => {
   const classes = useStyles();
@@ -193,6 +191,6 @@ const Header = () => {
       {renderMobileMenu}
     </div>
   );
-}
+};
 
 export default Header;
