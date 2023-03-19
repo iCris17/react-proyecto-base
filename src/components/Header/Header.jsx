@@ -131,9 +131,12 @@ const Header = () => {
         </div>
       )}
 
-      {isAuthenticated === 'yes' && (
+      {(isAuthenticated === 'yes' && window.location.pathname !== "/login")&& (
         <div>
-          {window.location.pathname !== '/category/electronics' && (
+          {(window.location.pathname !== '/category/electronics' &&
+          window.location.pathname !== '/category/jewelery' &&
+          window.location.pathname !== `/category/men's%20clothing` && 
+          window.location.pathname !== `/category/women's%20clothing`) && (
             <MenuItem
               onClick={() => {
                 navigate('/category/electronics');
@@ -142,6 +145,16 @@ const Header = () => {
               Go to Products
             </MenuItem>
           )}
+          {window.location.pathname !== "/" && 
+            <MenuItem
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              Home
+            </MenuItem>
+          }
+          
           <MenuItem
             onClick={() => {
               localStorage.removeItem('auth');
@@ -153,7 +166,7 @@ const Header = () => {
           </MenuItem>
         </div>
       )}
-      {isAuthenticated !== 'yes' && (
+      {(isAuthenticated !== 'yes' && window.location.pathname !== "/login") && (
         <div>
           <MenuItem
             onClick={() => {
@@ -164,6 +177,17 @@ const Header = () => {
           </MenuItem>
         </div>
       )}
+      {window.location.pathname === "/login" && 
+        <div>
+          <MenuItem
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            Home
+          </MenuItem>
+        </div>
+      }
     </Menu>
   );
 
@@ -177,7 +201,7 @@ const Header = () => {
               href="#home"
               onClick={() => {
                 (window.location.pathname === '/category/electronics' ||
-                  window.location.pathname === '/users') &&
+                  window.location.pathname === '/login') &&
                   navigate('/');
               }}
             >
@@ -204,7 +228,7 @@ const Header = () => {
             </div>
           )}
           <div className={classes.buttonsGrow}>
-            {isAuthenticated === 'yes' && (
+            {(isAuthenticated === 'yes' && window.location.pathname !== "/login") && (
               <>
                 {window.location.pathname !== '/category/electronics' && (
                   <Button
@@ -230,7 +254,7 @@ const Header = () => {
                 </Button>
               </>
             )}
-            {isAuthenticated !== 'yes' && (
+            {(isAuthenticated !== 'yes' && window.location.pathname !== "/login") && (
               <>
                 <Button
                   variant="contained"

@@ -7,6 +7,7 @@ import { purple } from '@material-ui/core/colors';
 import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
+import Header from '../Header/Header';
 
 const theme = createTheme({
   palette: {
@@ -21,9 +22,12 @@ const useStyles = makeStyles( (theme) => ({
     backgroundColor: "#f5f5f5",
     justifyContent: "center",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
   container: {
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "63px"
+    },
     maxWidth: 500,
     display: "flex",
     justifyContent: "center",
@@ -137,27 +141,29 @@ const Login = () => {
 
   
   return (
-    <Grid container className={classes.root}>
-      <div className={classes.container}>
-        <Typography variant='h3' className={classes.title}><span className={classes.titleStyles}>Login</span> with your credentials</Typography>
-        <Card className={classes.card}>
-          <ThemeProvider theme={theme}>
-            <img src="/store.svg" alt="Login image" className={classes.image} />
-            <form onSubmit={handleSubmit}>
-              {error && <div className={classes.errorContainer}><ReportProblemOutlinedIcon className={classes.errorIcon}/><Typography variant='h6' className={classes.error} >
-                Incorrect credentials</Typography></div>}
-              <TextField required type="text" id="user" label="User" variant="outlined" className={classes.textField}
-              value={user} onChange={(e) => setUser(e.target.value)}/>
-              <TextField required type="password" id="password" label="Password" variant="outlined" className={classes.textField}
-              value={password} onChange={(e) => setPassword(e.target.value)}/>
-              <Button type="submit" variant="contained" color="primary" className={classes.button}>Login</Button>
-            </form>
-          </ThemeProvider>
-          
-        </Card>
-      </div>
-    </Grid>
-        
+    <>
+      <Header></Header>
+      <Grid container className={classes.root}>
+        <div className={classes.container}>
+          <Typography variant='h3' className={classes.title}><span className={classes.titleStyles}>Login</span> with your credentials</Typography>
+          <Card className={classes.card}>
+            <ThemeProvider theme={theme}>
+              <img src="/store.svg" alt="Login image" className={classes.image} />
+              <form onSubmit={handleSubmit}>
+                {error && <div className={classes.errorContainer}><ReportProblemOutlinedIcon className={classes.errorIcon}/><Typography variant='h6' className={classes.error} >
+                  Incorrect credentials</Typography></div>}
+                <TextField required type="text" id="user" label="User" variant="outlined" className={classes.textField}
+                value={user} onChange={(e) => setUser(e.target.value)}/>
+                <TextField required type="password" id="password" label="Password" variant="outlined" className={classes.textField}
+                value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <Button type="submit" variant="contained" color="primary" className={classes.button}>Login</Button>
+              </form>
+            </ThemeProvider>
+            
+          </Card>
+        </div>
+      </Grid>
+    </>
   );
 }
 
