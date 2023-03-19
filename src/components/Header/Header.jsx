@@ -182,17 +182,9 @@ const Header = () => {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <a
-              className={`${classes.logo}`}
-              href="#home"
-              onClick={() => {
-                (window.location.pathname === '/category' ||
-                  window.location.pathname === '/users') &&
-                  navigate('/');
-              }}
-            >
-              Sellers Store
-            </a>
+            
+            <a className={`${classes.logo}`} href='#home' onClick={() => {(window.location.pathname === "/category/:categoryName"
+            || window.location.pathname === ("/users")) && navigate("/")}}>Sellers Store</a>
           </Typography>
           <div className={classes.grow} />
           {(window.location.pathname === '/' || window.location.pathname === '') && (
