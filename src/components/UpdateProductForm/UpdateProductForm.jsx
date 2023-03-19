@@ -8,8 +8,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import PropTypes from 'prop-types';
-// import ImageIcon from '@mui/icons-material/Image';
-// import CloseIcon from '@mui/icons-material/Close';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -45,16 +43,26 @@ const UpdateProductForm = (props) => {
   const classes = useStyles();
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
-  //   const [image, setImage] = useState(null);
   const [description, setDescription] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const clearForm = () => {
     setTitle('');
     setPrice('');
-    // setImage('');
     setDescription('');
-    alert('Thank you, we will update your product.');
+  };
+
+  const handleSubmit = (event) => {
+    console.log(props.productID);
+    event.preventDefault();
+    const newProductList = props.productList.map((product) => {
+      if (props.productID == product.id) {
+        return { ...product, title, description, price };
+      }
+      return product;
+    });
+    props.setProductList(newProductList);
+    props.handleClose();
+    clearForm();
   };
 
   return (
@@ -85,16 +93,7 @@ const UpdateProductForm = (props) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
-              {/* {
-              <input
-                filename={image}
-                label="New Image"
-                onChange={(e) => setImage(e.target.files[0])}
-                type="file"
-                accept="image/*"
-                //   className= {classes.input}
-              ></input>
-            } */}
+
               <TextField
                 type="text"
                 required
@@ -117,15 +116,15 @@ const UpdateProductForm = (props) => {
                 >
                   Cancel
                 </Button>
-                {/* <Button
-                  onClick={props.handleClose}
+                <Button
+                  onClick={handleSubmit}
                   className={classes.submit}
                   type="submit"
                   variant="contained"
                   color="secondary"
                 >
                   Update
-                </Button> */}
+                </Button>
               </DialogActions>
             </form>
           </ThemeProvider>
@@ -138,5 +137,8 @@ const UpdateProductForm = (props) => {
 UpdateProductForm.propTypes = {
   isOpen: PropTypes.bool,
   handleClose: PropTypes.func,
+  setProductList: PropTypes.func,
+  productList: PropTypes.array,
+  productID: PropTypes.number,
 };
 export default UpdateProductForm;
