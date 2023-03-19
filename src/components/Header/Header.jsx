@@ -133,10 +133,10 @@ const Header = () => {
 
       {isAuthenticated === 'yes' && (
         <div>
-          {window.location.pathname !== '/category/:categoryName' && (
+          {window.location.pathname !== '/category/electronics' && (
             <MenuItem
               onClick={() => {
-                navigate('/category:categoryName');
+                navigate('/category/electronics');
               }}
             >
               Go to Products
@@ -182,17 +182,9 @@ const Header = () => {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            <a
-              className={`${classes.logo}`}
-              href="#home"
-              onClick={() => {
-                (window.location.pathname === '/category' ||
-                  window.location.pathname === '/users') &&
-                  navigate('/');
-              }}
-            >
-              Sellers Store
-            </a>
+            
+            <a className={`${classes.logo}`} href='#home' onClick={() => {(window.location.pathname === "/category/electronics"
+            || window.location.pathname === ("/users")) && navigate("/")}}>Sellers Store</a>
           </Typography>
           <div className={classes.grow} />
           {(window.location.pathname === '/' || window.location.pathname === '') && (
@@ -216,7 +208,7 @@ const Header = () => {
           <div className={classes.buttonsGrow}>
             {isAuthenticated === 'yes' && (
               <>
-                {window.location.pathname !== '/category/:categoryName' && (
+                {window.location.pathname !== '/category/electronics' && (
                   <Button
                     variant="contained"
                     className={classes.button}
