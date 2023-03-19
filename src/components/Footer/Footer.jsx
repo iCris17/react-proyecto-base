@@ -43,7 +43,11 @@ const Footer = () => {
     const [message, setMessage] = useState("");
     const handleSubmit = (event) => {
         event.preventDefault();
-        setName("");setEmail("");setSubject("");setMessage("");alert("Thank you! We'll reply you as soon as possible :).");
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+        alert("Thank you! We'll reply you as soon as possible :).");
     }
     return(
     <Grid container className={classes.root} id="contact-us">
@@ -60,9 +64,7 @@ const Footer = () => {
                     value={subject} onChange={e => setSubject(e.target.value)}/>
                     <TextField type="text" required multiline id="filled-basic" label="Message" variant="filled" className={classes.input} minRows={5}
                     value={message} onChange={e => setMessage(e.target.value)}/>
-                    <Button type="submit" variant="contained" color="secondary" onClick={() => {
-                        
-                    }} className={classes.submit}>Send</Button>
+                    <Button type="submit" variant="contained" color="secondary" className={classes.submit}>Send</Button>
                 </form>
             </ThemeProvider>
         </Grid>
