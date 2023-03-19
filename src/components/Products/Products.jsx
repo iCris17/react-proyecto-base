@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import { truncate } from '../../utils/string';
+import UpdateProductForm from '../UpdateProductForm/UpdateProductForm';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -34,12 +35,14 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '150px',
     textAlign: 'center',
     textTransform: 'capitalize',
+    paddingTop: '20px',
   },
   price: {
     paddingTop: '20px',
     color: 'Green',
     fontWeight: 'bold',
     fontSize: '22px',
+    textAlign: 'center',
   },
   button: {
     backgroundColor: '#802c6e',
@@ -56,6 +59,14 @@ const Products = () => {
   const [productList, setProductList] = useState([]);
   const [error, setError] = useState();
   const { categoryName } = useParams();
+  const [openForm, setOpenForm] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenForm(true);
+  };
+  const handleClose = () => {
+    setOpenForm(false);
+  };
 
   const getData = async () => {
     try {
@@ -82,57 +93,60 @@ const Products = () => {
   }
 
   return (
-    <Grid container spacing={2} className={classes.container}>
-      {productList.map((product) => {
-        return (
-          <Grid item xs={12} md={3} key={product}>
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
-                <Paper className={classes.paper} key={product}>
-                  <ButtonBase className={classes.images} key={product}>
-                    <img src={product.image} className={classes.img}></img>
-                  </ButtonBase>
-                  <Grid item xs={6} sm container>
-                    <Grid item xs container direction="column" spacing={12}>
-                      <Grid item xs>
-                        <Typography gutterBottom variant="subtitle1" className={classes.title}>
-                          {truncate(product.title, 50)}
+    <>
+      <UpdateProductForm isOpen={openForm} handleClose={handleClose}></UpdateProductForm>
+      <Grid container spacing={2} className={classes.container}>
+        {productList.map((product) => {
+          return (
+            <Grid item xs={12} md={3} key={product}>
+              <Grid container spacing={0}>
+                <Grid item xs={12}>
+                  <Paper className={classes.paper} key={product}>
+                    <ButtonBase className={classes.images} key={product}>
+                      <img src={product.image} className={classes.img}></img>
+                    </ButtonBase>
+                    <Grid item xs={12} sm container>
+                      <Grid item xs container direction="column" spacing={12}>
+                        <Grid item>
+                          <Typography gutterBottom variant="subtitle1" className={classes.title}>
+                            {truncate(product.title, 50)}
+                          </Typography>
                           <Typography variant="subtitle1" className={classes.price}>
                             ${product.price}
                           </Typography>
-                        </Typography>
-                        <Typography variant="subtitle1" className={classes.price}>
-                          ${product.price}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                          ID:{product.id}
-                        </Typography>
-                        <Typography variant="body2" gutterBottom className={classes.description}>
-                          {truncate(product.description, 150)}
-                        </Typography>
-                      </Grid>
-                      <Grid item>
-                        <button
-                          className={classes.button}
-                          onClick={() => {
-                            const remove = productList.filter(
-                              (producto) => producto.id !== product.id,
-                            );
-                            setProductList(remove);
-                          }}
-                        >
-                          Remove
-                        </button>
+                          <Typography variant="body2" color="textSecondary">
+                            ID:{product.id}
+                          </Typography>
+                          <Typography variant="body2" gutterBottom className={classes.description}>
+                            {truncate(product.description, 150)}
+                          </Typography>
+                        </Grid>
+                        <Grid container justifyContent="space-between">
+                          <button
+                            className={classes.button}
+                            onClick={() => {
+                              const remove = productList.filter(
+                                (producto) => producto.id !== product.id,
+                              );
+                              setProductList(remove);
+                            }}
+                          >
+                            Remove
+                          </button>
+                          <button className={classes.button} onClick={handleClickOpen}>
+                            Update
+                          </button>
+                        </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
-                </Paper>
+                  </Paper>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        );
-      })}
-    </Grid>
+          );
+        })}
+      </Grid>
+    </>
   );
 };
 export default Products;
