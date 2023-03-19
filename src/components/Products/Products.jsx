@@ -51,7 +51,6 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: '0.5px',
     color: 'white',
     textTransform: 'capitalize',
-    // display: 'inline-block',
   },
 }));
 
