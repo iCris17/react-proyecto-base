@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     borderRight: '3px solid white',
     animation: `$writing 4s steps(13) 1s 1 forwards, $blink 1s steps(1) infinite`,
   },
+
   mobileTitle: {
     [theme.breakpoints.down('sm')]: {
       fontSize: '50px',
@@ -60,6 +61,7 @@ const ProductsPageBody = () => {
           <div className={classes.titleContainer}>Sellers Store</div>
         </Typography>
       </Grid>
+
       <Grid item md={2} />
     </Grid>
   );
