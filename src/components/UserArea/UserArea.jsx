@@ -1,7 +1,10 @@
 import Header from '../Header/Header';
 
+
 import ProductsPageBody from '../ProductsPageBody/ProductsPageBody';
 import UsersNav from '../UsersNav/UsersNav';
+
+import UserBody from '../UserBody/UserBody';
 
 const ProductsPage = () => {
   return (
@@ -10,6 +13,7 @@ const ProductsPage = () => {
       <ProductsPageBody></ProductsPageBody>
       <UsersNav></UsersNav>
       {/* TIENES QUE AGREGAR LOS DEMAS COMPONENTES AQUI */}
+      <UserBody/>
     </>
   );
 };

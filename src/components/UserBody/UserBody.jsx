@@ -1,5 +1,10 @@
 import React from 'react';
-import { Grid, makeStyles, Typography } from "@material-ui/core"
+import { Grid, makeStyles, Typography } from "@material-ui/core";
+import AddUser from '../AddUser/AddUser';
+import UpdateUser from '../UpdateUser/UpdateUser';
+import DeleteUser from '../DeleteUser/DeleteUser';
+import GetUser from '../GetUser/GetUser';
+import { Update } from '@material-ui/icons';
 
 const UseStyles = makeStyles((theme) => ({
     root: {
@@ -52,7 +57,21 @@ const UseStyles = makeStyles((theme) => ({
 
 
 const UserBody = () => {
-
+    const classes = UseStyles();
+    
+    return(
+    <Grid container className={`${classes.root}`} id="Userhome">
+        <Grid item md={2} />
+        <Grid item md={8}></Grid>
+        <Typography variant="h3" className={`${classes.title} ${classes.mobileTitle}`}>
+            <div className={classes.titleContainer}>Please select one of the following options</div>
+        </Typography>
+        <AddUser/>
+        <DeleteUser/>
+        <GetUser/>
+        <Update/>
+    </Grid>
+    );
 }
 
 export default UserBody;
