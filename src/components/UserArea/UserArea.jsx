@@ -1,17 +1,17 @@
-import GetUser from "../GetUser/GetUser";
-import DeleteUser from "../DeleteUser/DeleteUser";
-import AddUser from "../AddUser/AddUser";
-import UpdateUser from "../UpdateUser/UpdateUser";
+import Header from '../Header/Header';
 
-const UserArea = () =>{
-  return(
-    <div> 
-      <GetUser></GetUser>
-      <AddUser></AddUser>
-      <DeleteUser></DeleteUser>
-      <UpdateUser></UpdateUser>
-    </div>
-  )
-}
+import ProductsPageBody from '../ProductsPageBody/ProductsPageBody';
+import UsersNav from '../UsersNav/UsersNav';
 
-export default UserArea;
+const ProductsPage = () => {
+  return (
+    <>
+      <Header></Header>
+      <ProductsPageBody></ProductsPageBody>
+      <UsersNav></UsersNav>
+      {/* TIENES QUE AGREGAR LOS DEMAS COMPONENTES AQUI */}
+    </>
+  );
+};
+
+export default ProductsPage;
